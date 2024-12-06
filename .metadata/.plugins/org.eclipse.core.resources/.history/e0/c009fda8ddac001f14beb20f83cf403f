@@ -1,0 +1,21 @@
+package code;
+
+import java.io.File;
+import java.util.Scanner;
+
+public class FantasyNameGenerator {
+
+	public static void main(String[] args) {
+		Scanner maleNames = new Scanner( new File("maleNames.txt") );
+		
+		int min = 0;
+		int max = 1;
+		int gender = (int)(Math.random() * (max - min + 1) + min);
+		
+		int randomPosition = 
+		
+		input.nextLine()
+
+	}
+
+}

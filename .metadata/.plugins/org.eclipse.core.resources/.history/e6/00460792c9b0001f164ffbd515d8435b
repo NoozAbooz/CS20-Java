@@ -1,0 +1,14 @@
+import java.io.File;
+import java.util.Scanner;
+
+public class TextTwist {
+	public static boolean canMake(String word, String letters) {
+		
+		
+	}
+	
+	public static void main(String[] args) {
+		Scanner infile = new Scanner( new File("dictionary.txt") );
+	}
+
+}

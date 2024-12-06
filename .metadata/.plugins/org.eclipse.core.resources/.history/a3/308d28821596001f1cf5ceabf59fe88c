@@ -1,0 +1,30 @@
+ 
+public class WordsFromLetters {
+
+	public static void main(String[] args) {
+		System.out.println(checkLetters("shoes", "house"));
+	}
+	
+	public static boolean checkLetters(String str1, String str2) {
+		boolean state = true;
+		char[] arr1 = str1.toCharArray();
+		char[] arr2 = str2.toCharArray();
+		
+		for (char c : arr2) { // replace identical characters with '!' and break loop on first instance
+			for (int i = 0; i < arr1.length; i++) {
+				if (c == arr1[i]) {
+					arr1[i] = '!';
+					break;
+				}
+			}
+		}
+		
+		for (char c : arr1) { // double check every single array element
+			if (c != '!') {
+				state = false;
+			}
+		}
+		return state;
+	}
+
+}

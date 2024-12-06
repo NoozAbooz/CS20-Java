@@ -1,0 +1,72 @@
+
+public class Mastermind {
+	public static void display(int arr[][]) { // print for debugging
+		for (int l = 0; l < arr.length; l++) {
+			System.out.print(arr[l][0] + " ");
+			System.out.print(arr[l][1] + " ");
+			System.out.print(arr[l][2] + " ");
+			System.out.println(arr[l][3]);
+		}
+	}
+
+	public static void main(String[] args) {
+		int solutionSet[][] = new int[4096][4];
+		boolean possible[] = new boolean[4096];
+		
+		int rowNumber = 0; // populate with nested loop for every 8x8x8x8 combo
+		// i love combinatorics!!!!
+		for (int a = 1; a <= 8; a++) {
+			for (int b = 1; b <= 8; b++) {
+				for (int c = 1; c <= 8; c++) {
+					for (int d = 1; d <= 8; d++) {
+						solutionSet[rowNumber][0] = a; 
+						solutionSet[rowNumber][1] = b;
+						solutionSet[rowNumber][2] = c;
+						solutionSet[rowNumber][3] = d;
+						
+						rowNumber++;
+					}
+				}
+			}
+		}
+		
+		for (int i = 0; i < 4096; i++) { // switch from default false value to true
+			possible[i] = true;
+		}
+		
+		while (true) {
+			// step 5) find first POSSIBLE value in the list
+			int selectedIndex = 0;
+			for (int i = 0; i < solutionSet.length; i++) {
+				if (possible[i] == true) {
+					System.out.print(solutionSet[i][0] + " ");
+					System.out.print(solutionSet[i][1] + " ");
+					System.out.print(solutionSet[i][2] + " ");
+					System.out.println(solutionSet[i][3]);
+					selectedIndex = i;
+					break;
+				}
+			}
+			
+		
+			// step 6
+			int correctAmount = myTools.userInput("How many were in the correct spot?", 1, 4); 
+			int wrongAmount = myTools.userInput("How many were in the wrong spot?", 1, 4); 
+			if (correctAmount == 4) {
+				break;
+			}
+			
+			// step 7, change possible array to false (if the program doesn't break earlier, this will run)
+			possible[selectedIndex] = false;
+			
+			// step 8
+			for (int i = 0; i < solutionSet.length; i++) {
+				if () {
+					
+				}
+			}
+		}
+
+	}
+
+}

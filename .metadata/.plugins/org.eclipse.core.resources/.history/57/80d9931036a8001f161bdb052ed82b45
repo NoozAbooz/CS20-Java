@@ -1,0 +1,110 @@
+
+public class Mastermind {
+	public static void display(int arr[][]) { // print for debugging
+		for (int l = 0; l < arr.length; l++) {
+			System.out.print(arr[l][0] + " ");
+			System.out.print(arr[l][1] + " ");
+			System.out.print(arr[l][2] + " ");
+			System.out.println(arr[l][3]);
+		}
+	}
+
+	public static void main(String[] args) {
+		int solutionSet[][] = new int[4096][4];
+		boolean possible[] = new boolean[4096];
+		
+		int rowNumber = 0; // populate with nested loop for every 8x8x8x8 combo
+		// i love combinatorics!!!!
+		for (int a = 1; a <= 8; a++) {
+			for (int b = 1; b <= 8; b++) {
+				for (int c = 1; c <= 8; c++) {
+					for (int d = 1; d <= 8; d++) {
+						solutionSet[rowNumber][0] = a; 
+						solutionSet[rowNumber][1] = b;
+						solutionSet[rowNumber][2] = c;
+						solutionSet[rowNumber][3] = d;
+						
+						rowNumber++;
+					}
+				}
+			}
+		}
+		
+		for (int i = 0; i < 4096; i++) { // switch from default false value to true
+			possible[i] = true;
+		}
+		
+		for (int attempts = 1; attempts > 0; attempts++) { // finicky logic to count number of loop iterations
+			// step 5) find first POSSIBLE value in the list
+			int selectedIndex = 0;
+
+			if (attempts == 1) {
+					System.out.print(solutionSet[10][0] + " ");
+					System.out.print(solutionSet[10][1] + " ");
+					System.out.print(solutionSet[10][2] + " ");
+					System.out.println(solutionSet[10][3]);
+					selectedIndex = 10;
+					break;
+			}
+			
+			for (int i = 0; i < solutionSet.length; i++) {
+				if (possible[i] == true && attempts != 1) {
+					System.out.print(solutionSet[i][0] + " ");
+					System.out.print(solutionSet[i][1] + " ");
+					System.out.print(solutionSet[i][2] + " ");
+					System.out.println(solutionSet[i][3]);
+					selectedIndex = i;
+					break;
+				}
+			}
+		
+			// step 6
+			int correctPositions = myTools.userInput("How many were in the correct spot?", 0, 4);
+			if (correctPositions == 4) {
+				System.out.println("Congrats on solving this puzzle! You used " + attempts + "attempts.");
+				break;
+			}
+			int wrongPositions = myTools.userInput("How many were in the wrong spot?", 0, 4); 
+			
+			// step 7, change possible array to false (if the program doesn't break earlier, this will run)
+			possible[selectedIndex] = false;
+			
+			// step 8
+			for (int i = 0; i < solutionSet.length; i++) {
+				int localCorrectPositions = 0;
+				int localWrongPositions = 0;
+					
+				char[] guess = new char[4];
+				char[] selectedSolution = new char[4];
+				
+				for (int k = 0; k < 4; k++) { // write into temporary char array so we can delete elements
+					guess[k] = Character.forDigit(solutionSet[selectedIndex][k], 10); // convert int to char
+					selectedSolution[k] = Character.forDigit(solutionSet[i][k], 10);
+				}
+				
+				for (int k = 0; k < 4; k++) { // find in correct positions and eliminate
+					if (guess[k] == selectedSolution[k]) {
+						localCorrectPositions++;
+						selectedSolution[k] = '!';
+					}
+				}
+				
+				for (int k = 0; k < 4; k++) { // find in wrong positions and eliminate
+					for (int j = 0; j < 4; j++) {
+						if (guess[k] == selectedSolution[j]) {
+							localWrongPositions++;
+							selectedSolution[j] = '!';
+						}
+					}
+				}
+				
+				
+				if (!(localCorrectPositions == correctPositions && localWrongPositions == wrongPositions)) {
+					possible[i] = false;
+				}
+			}
+		}
+
+	}
+
+}

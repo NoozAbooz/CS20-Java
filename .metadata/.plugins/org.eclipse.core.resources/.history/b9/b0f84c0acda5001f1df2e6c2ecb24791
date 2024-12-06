@@ -1,0 +1,14 @@
+
+public class Mastermind {
+
+	public static void main(String[] args) {
+		int solutionSet[][] = new int[4096][4];
+		boolean possible[] = new boolean[4096];
+		
+		for (int i = 0; i < solutionSet.length; i++) {
+			for  
+		}
+
+	}
+
+}

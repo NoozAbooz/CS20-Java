@@ -1,0 +1,74 @@
+
+public class TicTacToe {
+	public static void main(String[] args) {
+		char[][] grid = new char[3][3];
+		// populate sequential grid
+		int position = 1;
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 3; j++) {
+				grid[i][j] = (char)(position + '0');
+				position++;
+			}
+		}
+		
+		// randomize first player
+		int turnTracker = myTools.random(1, 2);
+		
+		while(true) {
+		    if(turnTracker % 2 == 0) {
+		    	displayBoard(grid);
+		        playerMove(grid, 'X');
+		        computerMove(grid, 'O');
+		        displayBoard(grid);
+		    }
+		    if(turnTracker % 2 == 1) {            
+		        computerMove(grid, 'X');
+		        displayBoard(grid);
+		        playerMove(grid, 'O');
+		    }
+		    turnTracker++;
+		}
+	}
+		
+	// display board
+	public static void displayBoard(char[][] grid) {
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 3; j++) {
+				System.out.print(grid[i][j] + " | ");
+			}
+			System.out.println();
+			System.out.println("-----------");
+		}
+		System.out.println();
+	}
+	
+	public static void playerMove(char[][] grid, char symbol){
+		int i = 0;
+		int j = 0;
+		
+		do {
+			int input = myTools.userInput("Square selection for: " + symbol + " (1-9)", 1, 9);
+			
+			i = ((input - 1) / 3);
+			j = ((input - 1) % 3);
+		} while (Character.isDigit(grid[i][j]));
+		
+		grid[i][j] = symbol;
+	}
+	
+	public static void computerMove(char[][] grid, char symbol){
+		int i = 0;
+		int j = 0;
+		
+		do {
+			int input = myTools.userInput("Square selection for: " + symbol + " (1-9)", 1, 9);
+			
+			i = ((input - 1) / 3);
+			j = ((input - 1) % 3);
+		} while (Character.isDigit(grid[i][j]));
+		
+		grid[i][j] = symbol;
+	}
+
+
+}

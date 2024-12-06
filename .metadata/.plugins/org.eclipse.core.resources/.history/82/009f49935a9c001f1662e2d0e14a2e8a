@@ -1,0 +1,42 @@
+
+public class TwoDimensionPractice {
+
+	public static void main(String[] args) {
+		int[][] manta = new int[20][20];
+		
+		// populate random and print out
+		for (int i = 0; i < 20; i++) {
+			for (int j = 0; j < 20; j++) {
+				manta[i][j] = myTools.random(1, 100);
+				System.out.print(manta[i][j]);
+			}
+			System.out.println();
+		}
+		System.out.println();
+		
+		int largestSum = 0;
+		int largestI = 0;
+		int largestJ = 0;
+		/// 3x3 grid with largest sum
+		for (int i = 0; i < 20; i++) {
+			for (int j = 0; j < 20; j++) {
+				if (i < (manta.length - 2) && j < (manta[0].length - 2)) {
+					int sumRow1 = manta[i][j] + manta[i][j+1] + manta[i][j+2];
+					int sumRow2 = manta[i+1][j] + manta[i+1][j+1] + manta[i+1][j+2];
+					int sumRow3 = manta[i+2][j] + manta[i+2][j+1] + manta[i+2][j+2];
+					
+					int sum = (sumRow1 + sumRow2 + sumRow3);
+					
+					if (sum > largestSum) {
+						largestI = i; // row ("y")
+						largestJ = j; // column ("x")
+						largestSum = sum;
+					}
+				}
+			}
+		}
+		
+		System.out.println("(" + largestJ + ", " + largestI + ")");
+	}
+
+}

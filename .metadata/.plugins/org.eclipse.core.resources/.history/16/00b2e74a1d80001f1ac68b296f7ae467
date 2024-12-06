@@ -1,0 +1,136 @@
+import java.util.Arrays;
+
+public class SkillBuilding {
+
+	public static void main(String[] args) {
+		int array[] = new int[100];
+		boolean exit = false;
+		
+		do {
+			int userChoice = display();
+			
+			switch (userChoice) {
+			case 0:
+				exit = true;
+				break;
+			case 1:
+				array = populateRandom(array);
+				break;
+			case 2:
+				array = populateSequential(array);
+				break;
+			case 3:
+				System.out.println(Arrays.toString(array));
+				break;
+			case 4:
+				array = shuffle(array);
+				break;
+			case 5:
+				System.out.println(findOccurances(array, 57));
+				break;
+			}
+		} while (exit == false);
+	}
+
+	public static int display() {
+		System.out.println("0. Exit Program");
+		System.out.println("1. Populate array randomly");
+		System.out.println("2. Populate array sequentially from 1 - 100");
+		System.out.println("3. Display array");
+		System.out.println("4. Shuffle array");
+		System.out.println("5. Testing");
+		return myTools.userInput(0, 5);
+	}
+	
+	public static int[] populateRandom(int[] array) {
+		for (int i = 0; i < 100; i++) {
+			array[i] = myTools.random(1, 100);
+		}
+		return array;
+	}
+	
+	public static int[] populateSequential(int[] array) {
+		for (int i = 0; i < 100; i++) {
+			array[i] = (i + 1);
+		}
+		return array;
+	}
+	
+	public static int[] shuffle(int[] array) {		
+		for (int i = 0; i < 10; i++) { // generate 2 random indexes, swap their values and repeat 10 times
+			int index1 = myTools.random(0, array.length - 1);
+			int index2 = myTools.random(0, array.length - 1);
+			int placeholderValue = array[index1];
+			array[index1] = array[index2];
+			array[index2] = placeholderValue;
+		}
+		return array;
+	}
+	
+	public static int find(int[] array, int number) {
+		int index = -1;
+		for (int i = 0; i < array.length; i++) {
+			if (array[i] == number) {
+				index = i;
+				break;
+			}
+		}
+		return index;
+	}
+	
+	public static boolean ascending(int[] array) {
+		boolean isAscending = true;
+		int previousValue = array[0];
+		for (int i = 1; i < array.length; i++) {
+			if (array[i] != (previousValue + 1)) {
+				isAscending = false; // set to false the first iteration where it is not ascending and immediately exit
+				break;
+			}
+			previousValue = array[i];
+		}
+		return isAscending;
+	}
+	
+	public static boolean shuffleSort(int[] array) {
+		boolean isAscending = false;
+		for (int i = 0; i < 10000; i++) {
+			shuffle(array);
+			if (ascending(array) == true) {
+				isAscending = true;
+				break;
+			}
+		}
+		return isAscending;
+	}
+	
+	public static int lowestValue(int[] array) {
+		int value = array[0];
+		for (int i = 0; i < array.length; i++) {
+			if (array[i] < value) {
+				value = array[i];
+			}
+		}
+		return value;
+	}
+	
+	public static int highestValue(int[] array) {
+		int value = array[0];
+		for (int i = 0; i < array.length; i++) {
+			if (array[i] > value) {
+				value = array[i];
+			}
+		}
+		return value;
+	}
+	
+	public static int findOccurances(int[] array, int number) {
+		int occurances = 0;
+		for (int i = 0; i < array.length; i++) {
+			if (array[i] == number) {
+				occurances++;
+			}
+		}
+		return occurances;
+	}
+}
+ 

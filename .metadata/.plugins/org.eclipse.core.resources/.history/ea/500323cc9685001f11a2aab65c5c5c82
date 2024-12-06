@@ -1,0 +1,25 @@
+
+public class TicTacToe {
+
+	public static void main(String[] args) {
+		char[][] grid = new char[3][3];
+		
+		// populate random and print out
+		int position = 1;
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 3; j++) {
+				grid[i][j] = (char)position;
+				position++;
+			}
+		}
+		
+		// display
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 3; j++) {
+				System.out.println(grid[i][j]);
+			}
+			System.out.println();
+		}
+	}
+
+}

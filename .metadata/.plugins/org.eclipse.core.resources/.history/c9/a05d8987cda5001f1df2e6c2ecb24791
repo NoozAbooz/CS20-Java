@@ -1,0 +1,37 @@
+
+public class Mastermind {
+
+	public static void main(String[] args) {
+		int solutionSet[][] = new int[4096][4];
+		boolean possible[] = new boolean[4096];
+		
+		int rowNumber = 0;
+		for (int a = 1; a <= 8; a++) {
+			for (int b = 1; b <= 8; b++) {
+				for (int c = 1; c <= 8; c++) {
+					for (int d = 1; d <= 8; d++) {
+						solutionSet[rowNumber][0] = a; 
+						solutionSet[rowNumber][1] = b;
+						solutionSet[rowNumber][2] = c;
+						solutionSet[rowNumber][3] = d;
+						
+						rowNumber++;
+					}
+				}
+			}
+		}
+		
+		for (int i = 0; i < 4096; i++) {
+			possible[i] = true;
+		}
+		
+		for (int l = 0; l < solutionSet.length; l++) {
+			System.out.print(solutionSet[l][0] + " ");
+			System.out.print(solutionSet[l][1] + " ");
+			System.out.print(solutionSet[l][2] + " ");
+			System.out.println(solutionSet[l][3]);
+		}
+
+	}
+
+}

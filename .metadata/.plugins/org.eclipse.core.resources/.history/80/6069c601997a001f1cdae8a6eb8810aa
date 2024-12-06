@@ -1,0 +1,66 @@
+
+public class Main {
+	public double money = 10000.00;
+	
+	public static void main(String[] args) {
+		int day = 1;
+		
+		double s1Price = 180.00;
+		int s1Count = 0;
+		
+		double s2Price = 1285.00;
+		int s2Count = 0;
+		
+		double s3Price = 161.00;
+		int s3Count = 0;
+		
+		double s4Price = 702.00;
+		int s4Count = 0;
+		
+		display(day, s1Price, s1Count, s2Price, s2Count, s3Price, s3Count, s4Price, s4Count);
+	}
+	
+	public static void display(int day, double s1Price, int s1Count, double s2Price, int s2Count, double s3Price, int s3Count, double s4Price, int s4Count) {
+		System.out.println("Stock Market - Day " + day + ":");
+		System.out.println("Company Name           Price         Shares Owned");
+		System.out.println("--------------------------------------------------");
+		System.out.println("1. Facebook            $" + s1Price + "        " + s1Count);
+		System.out.println("2. Google              $" + s2Price + "       " + s2Count);
+		System.out.println("3. Microsoft           $" + s3Price + "        " + s3Count);
+		System.out.println("4. Tesla               $" + s4Price + "        " + s4Count);
+		System.out.println();
+		System.out.println("Shares Value: $" + ((s1Price * s1Count) + (s2Price * s2Count) + (s3Price * s3Count) + (s4Price * s4Count)));
+	}
+	
+	public static double updatePrice(double price) {
+		int majorMinorOdds = myTools.random(0, 1);
+		double updatedPrice = 0;
+		
+		if (majorMinorOdds >= 0.95) { // 5% major
+			double deviation = myTools.random(0.05, 0.15); // 5% to 15%
+			int plusMinus = myTools.random(0, 1); // 50% up or down
+			
+			if (plusMinus == 0) {
+				updatedPrice = price - (price * deviation); 
+			} else {
+				updatedPrice = price + (price * deviation); 
+			}
+		} else if (majorMinorOdds > 0.80 && majorMinorOdds < 0.95) { // 15% nothing
+			updatedPrice = price;
+		} else { // 80% minor
+			double deviation = myTools.random(0.005, 0.03); // 0.5% to 3%
+			int plusMinus = myTools.random(0, 1); // 50% up or down
+			
+			if (plusMinus == 0) {
+				updatedPrice = price - (price * deviation); 
+			} else {
+				updatedPrice = price + (price * deviation); 
+			}
+		}
+		
+		if (updatedPrice < 0.01) { // cannot be less than $0.01
+			updatedPrice = 0.01;
+		}
+		return updatedPrice;
+	}
+}

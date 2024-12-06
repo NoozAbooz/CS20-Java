@@ -1,0 +1,45 @@
+import java.text.DecimalFormat;
+
+public class SkillBuilding {
+
+	public static void main(String[] args) {
+		int array[] = {};
+		boolean exit = false;
+		
+		do {
+			int userChoice = display();
+			
+			switch (userChoice) {
+			case 0:
+				exit = true;
+				break;
+			case 1:
+				array = populateRandom(array);
+				break;
+			case 2:
+				break;
+			case 3:
+				System.out.println(array);
+				break;
+			}
+		} while (exit == false);
+	}
+
+	public static int display() {
+		System.out.println("0. Exit Program");
+		System.out.println("1. Populate array randomly");
+		System.out.println("2. Populate array sequentially from 1 - 100");
+		System.out.println("3. Display array");
+		System.out.println("4. Shuffle array");
+		
+		return myTools.userInput(0, 4);
+	}
+	
+	public static int[] populateRandom(int[] array) {
+		for (int i = 0; i < 100; i++) {
+			array[i] = myTools.random(1, 100);
+		}
+		return array;
+	}
+}
+ 

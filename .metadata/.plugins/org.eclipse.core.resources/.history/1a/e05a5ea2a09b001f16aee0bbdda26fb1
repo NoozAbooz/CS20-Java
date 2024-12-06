@@ -1,0 +1,20 @@
+
+public class SocialDistance {
+
+	public static void main(String[] args) {
+		int seatCount = (int)myTools.userInput("How many seats are there?");
+		int[] occupationStatus = new int[seatCount];
+		int[] desirability = new int[seatCount];
+		
+		// take input for each seat
+		for (int i = 0; i < seatCount; i++) {
+			occupationStatus[i] = myTools.userInput("Is seat " + (i + 1) + " occupied? (1 = yes, 0 = no)", 0, 1);
+		}
+		
+		// spit it back out!
+		for (int i = 0; i < seatCount; i++) {
+			System.out.print(occupationStatus[i] + " ");
+		}
+	}
+
+}

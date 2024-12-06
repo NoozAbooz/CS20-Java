@@ -1,0 +1,17 @@
+
+public class TwoDimensionPractice {
+
+	public static void main(String[] args) {
+		int[][] manta = new int[20][20];
+		
+		// populate random
+		for (int i = 0; i < 20; i++) {
+			for (int j = 0; j < 20; j++) {
+				manta[i][j] = myTools.random(0, 9);
+				System.out.print(manta[i][j]);
+			}
+			System.out.println();
+		}
+	}
+
+}

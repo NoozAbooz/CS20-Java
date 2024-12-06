@@ -1,0 +1,16 @@
+import java.util.Scanner;
+
+public class StringManipulation {
+
+	public static void main(String[] args) {
+		Scanner input = new Scanner(System.in);
+		String name = input.next();
+		
+		if (name.charAt(0) >= 97 && name.charAt(0) <= 122) {
+			name = "" + (char)(name.charAt(0) - 32) + name.substring(1);
+		}
+
+		System.out.println(name);
+	}
+
+}

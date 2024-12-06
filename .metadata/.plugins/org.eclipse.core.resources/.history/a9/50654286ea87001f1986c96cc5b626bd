@@ -1,0 +1,54 @@
+
+public class SieveofEratosthenes {
+
+	public static void main(String[] args) {
+		int a = myTools.userInput("upper limit?", 3, 200000);
+		int[] manta = new int[a - 1];
+		
+		populateSequential(manta, a);
+		eliminate(manta);
+		display(manta);
+	}
+	
+	public static void populateSequential(int[] array, int a) {
+		for (int i = 0; i < (a - 1); i++) {
+			array[i] = (2 + i);
+		}
+	}
+	
+	public static void display(int[] array) {
+		for (int i = 0; i < array.length; i++) {
+			
+			if (array[i] < 10) {
+				System.out.print(array[i] + "   ");
+			} else if (array[i] < 100) {
+				System.out.print(array[i] + "  ");
+			} else {
+				System.out.print(array[i] + " ");
+			}
+			
+			if ((i + 1) % 10 == 0) {
+				System.out.println();
+			}
+		}
+	}
+	
+	public static void eliminate(int[] array) {
+		int first = 2; 
+		
+		for (int i = 1; i < array.length; i++) { // take out everything divisible by 2 (even numbers)
+			if (i % first == 0) {
+				array[i] = 0;
+			}
+		}
+		
+//		for (int i = 1; i < array.length; i++) {
+//			first = array[i];
+//			for (int k = 2; k < array.length; k++) {
+//				if (k % i == 0) {
+//					array[k] = 0;
+//				}
+//			}
+//		}
+	}
+}

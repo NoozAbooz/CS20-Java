@@ -6,6 +6,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="C:/Users/48197001/Documents/Michael Workspace/myTools.jar"/>
+	<classpathentry kind="lib" path="C:/Users/zheng/Documents/GitHub/CS20-EclipseWorkspace/myTools.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
